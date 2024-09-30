@@ -3,12 +3,14 @@
 # Requirements:
 # - R environment with required functions and data.
 # - This script depends on a preprocessing environment and external functions
-#   loaded from "methylation.process.R".
+#   loaded from "methylation.R".
 # - The configuration file ("config.tsv") is used to specify working directories.
 # - Methylation data (quality-corrected) and clinical data files are required.
 #
 # The script calculates the CpG island methylator phenotype (CIMP) status for samples,
 # merges it with the clinical data, and writes the updated clinical data back to disk.
+
+# Required environment: 'preprocess.yml' (containing prerequiste libraries).
 
 
 # Load configuration file that contains paths and other parameters
