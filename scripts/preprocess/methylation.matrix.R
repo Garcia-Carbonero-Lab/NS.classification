@@ -10,7 +10,7 @@
 #   - Configuration file: 'config/config.tsv' containing paths for directories.
 #   - Methylation data (.IDAT files) located in the specified directory.
 #   - Clinical data in 'clinical_data.txt'.
-#   - Custom functions from 'methylation.process.R' for preprocessing.
+#   - Custom functions from 'methylation.R' for preprocessing.
 #   - Requires 'methylation_m.yml' environment to be set up.
 #
 # Required environment: 'methylation_m.yml' (containing prerequiste libraries).
