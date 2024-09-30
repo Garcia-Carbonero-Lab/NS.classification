@@ -54,7 +54,6 @@ myImport <- champ.import(paste0(datadir, "/methylome/raw"),
 
 # Calculate methylation quality for each sample using the custom 'qual.met' function
 qual <- qual.met(myImport)
-colnames(qual) <- paste0(colnames(qual),".champ")
 
 # Merge the quality metrics with the clinical data based on the 'CLINICAL_TRIAL_CODE'
 clinical.data <- merge(clinical.data,
@@ -106,7 +105,7 @@ myNormB <- apply(myNormB, c(1,2), as.numeric)
 
 
 # Write the normalized beta values to a file
-write.table(myNormB, "myNormB.champ.txt", sep = "\t", row.names = T, col.names = NA)
+write.table(myNormB, "myNormB.txt", sep = "\t", row.names = T, col.names = NA)
 
 
 # Update the clinical data file with new quality metrics and save it
@@ -125,7 +124,7 @@ myNormM <- log((myNormM / (1 - myNormM)), 2)
 
 # Write the normalized M-values to a file
 write.table(myNormM,
-    "myNormM.champ.txt",
+    "myNormM.txt",
     sep = "\t",
     col.names = T,
     row.names = T,
