@@ -1,0 +1,12 @@
+name: viper
+channels:
+  - bioconda
+  - defaults
+  - r
+  - conda-forge
+dependencies:
+  - git
+  - openjdk=17.0.3
+  - bioconductor-viper=1.32.0
+  - r-base=4.2.0
+prefix: /local/ccarreterop/miniconda3/envs/viper

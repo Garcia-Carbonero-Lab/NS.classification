@@ -26,7 +26,6 @@
 
 norm_exp <- function(targetfile, inpath, outputpath, norm = "rma", flag) {
     
-    browser()
     # Load target file to obtain .CEL file paths    
     
     Target <- readTargets(targetfile, row.names = "FileName")
