@@ -16,7 +16,7 @@
 # Create directories if they don't exist and save results in appropriate locations.
 
 
-# Required environment: 'preprocess.yml' (containing prerequiste libraries).
+# Required environment: 'immune.yml' (containing prerequiste libraries).
 
 
 # Load required library for immune cell estimation
