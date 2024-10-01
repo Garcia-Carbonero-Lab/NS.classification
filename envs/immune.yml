@@ -1,0 +1,9 @@
+name: immune
+channels:
+  - bioconda
+  - defaults
+  - r
+  - conda-forge
+dependencies:
+  - r-mcpcounter=1.1.0
+  - r-base=4.2.0
