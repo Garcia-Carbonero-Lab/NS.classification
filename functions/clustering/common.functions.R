@@ -638,3 +638,48 @@ sep = "\t")
 # Return the data frame with p-values and adjusted p-values
 return(df)
 }
+
+####################################################
+# Function: anotation
+#
+# Description:
+#      This function merges differential expression results with their corresponding 
+#      annotations, filters the results based on adjusted p-values, and saves the 
+#      annotated results to a specified output file.
+#
+# Input:
+#      dep: data.frame containing differential expression results with rows corresponding
+#           to features and columns including adjusted p-values.
+#      anotation: data.frame containing annotations for the features, with a column named 'ID'.
+#      outdir: Path to the directory where results will be saved.
+#      flag: Suffix to append to the output file name for identification.
+#
+# Output:
+#      A filtered data.frame containing significant annotated differential expression results.
+####################################################
+
+anotation <- function(dep, anotation, outdir, flag) {
+  
+  # Merge the differential expression results with their annotations using 'ID' as the key
+  dep <- merge(anotation, dep, by.y = "row.names", by.x = "ID")
+  
+  # Rename the first column to 'ID' for clarity
+  colnames(dep)[1] <- "ID"
+  
+  # Order the results by adjusted p-values
+  dep <- dep[order(dep$adj.P.Val),]
+  
+  # Filter the results to retain only those with adjusted p-value < 0.05
+  dep <- dep[dep$adj.P.Val < 0.05,]
+  
+  # Save the significant annotated results to a text file
+  write.table(dep,
+              sep = "\t",
+              paste0(outdir, "/Significant_anotated_dep_", flag, ".txt"),
+              row.names = FALSE,
+              col.names = TRUE)
+  
+  # Return the filtered annotated results
+  return(dep)
+}
+
