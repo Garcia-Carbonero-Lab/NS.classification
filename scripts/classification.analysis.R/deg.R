@@ -216,3 +216,50 @@ device = "pdf",
 dpi = 500, width = 15,
 height = 10
 )
+
+
+NS1.genes <- rownames(NS1)[NS1$adj.P.Val < 0.05 ]
+
+NS2.genes <- rownames(NS2)[NS2$adj.P.Val < 0.05 ]
+
+NS3.genes <- rownames(NS3)[NS3$adj.P.Val < 0.10 ]
+
+
+NS1_filter <- NS1[NS1$adj.P.Val < 0.05 ,]
+NS2_filter <- NS2[NS2$adj.P.Val < 0.05 ,]
+NS3_filter <- NS3[NS3$adj.P.Val < 0.10 ,]
+
+
+# Write filtered deg table
+write.table(NS1_filter,
+paste0(outdir, "/Table_NS1_filter.txt"),
+sep = "\t",
+row.names = T,
+col.names = NA)
+
+write.table(NS2_filter,
+paste0(outdir, "/Table_NS2_filter.txt"),
+sep = "\t",
+row.names = T,
+col.names = NA)
+
+write.table(NS3_filter,
+paste0(outdir, "/Table_NS3_filter.txt"),
+sep = "\t",
+row.names = T,
+col.names = NA)
+
+
+
+NS.genes <- c(NS1.genes,NS2.genes,NS3.genes)
+
+exp <- exp[NS.genes,]
+
+
+
+write.table(exp,
+paste0(wkdir,
+"/clustering/deg/Expression.NS.txt"),
+sep = "\t",
+row.names= T,
+col.names= NA)

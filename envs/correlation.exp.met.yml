@@ -1,0 +1,18 @@
+name: correlation.exp.met
+channels:
+  - bioconda
+  - defaults
+  - r
+  - conda-forge
+dependencies:
+  - bioconductor-complexheatmap=2.14.0
+  - r-ggplot2=3.4.0
+  - r-tidyverse=1.3.1
+  - r-ggpubr=0.5.0
+  - r-circlize=0.4.15
+  - r-reticulate=1.26
+  - r-rstatix=0.7.1
+  - r-base=4.2.0
+  - bioconductor-limma=3.54.0
+  - bioconductor-org.hs.eg.db=3.16.0
+  - bioconductor-annotationdbi=1.60
