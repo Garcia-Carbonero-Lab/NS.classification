@@ -1,0 +1,18 @@
+name: clustering.ensemble
+channels:
+  - bioconda
+  - defaults
+  - r
+  - conda-forge
+dependencies:
+  - bioconductor-complexheatmap=2.14.0
+  - r-dicer=1.2.2
+  - bioconductor-mofa2=1.8.0
+  - r-apcluster=1.4.10
+  - r-rcpp=1.0.9
+  - r-fda=6.0.5
+  - r-rcppprogress=0.4.2
+  - r-rcpparmadillo=0.11.4.0.1
+  - r-dbscan=1.1_11
+  - r-polca=1.6.0
+  - r-base=4.2.0

@@ -1,0 +1,8 @@
+config/config.tsv
+data/transcriptome/raw/files/*.CEL
+data/methylome/raw/IDAT/*/*.idat
+data/methylome/anotation/infinium-methylationepic-v-1-0-b5-manifest-file.csv
+data/master_regulators/ARACNe-AP
+data/master_regulators/expression_aracne.tsv
+Rplots.pdf
+

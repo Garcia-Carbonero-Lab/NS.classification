@@ -1,0 +1,12 @@
+name: geneset
+channels:
+  - bioconda
+  - defaults
+  - r
+  - conda-forge
+dependencies:
+- r-base=4.2.0
+- bioconductor-gsva=1.46.0
+- bioconductor-clusterprofiler=4.6.0
+- bioconductor-limma=3.54.0
+- bioconductor-org.hs.eg.db=3.16.0
