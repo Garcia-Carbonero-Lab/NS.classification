@@ -9,4 +9,6 @@ data/external_data/Lakis_PANET/copy_number_somatic_mutation.PAEN-AU.tsv
 data/external_data/Lakis_PANET/meth_array.PAEN-AU.tsv
 data/external_data/Lakis_PANET/rnaseq_Lakis.tsv
 data/external_data/Lakis_PANET/simple_somatic_mutation.open.PAEN-AU.tsv
-
+data/external_data/Lakis_PANET/simple_somatic_mutation.open.PAEN-AU.tsv
+data/external_data/Alcala_LUNGNET/EGAD00010001720/*
+data/external_data/Alcala_LUNGNET/read_counts_all.txt
