@@ -1,0 +1,16 @@
+name: geo
+channels:
+  - bioconda
+  - defaults
+  - r
+  - conda-forge
+dependencies:
+  - r-base=4.3.2
+  - bioconductor-limma=3.56.2
+  - bioconductor-geoquery=2.68.0
+  - bioconductor-edger=3.42.4
+  - r-tidyverse=2.0.0
+  - bioconductor-org.hs.eg.db=3.17.0
+  - bioconductor-mygene=1.36.0
+  - r-bh
+

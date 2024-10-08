@@ -1,0 +1,68 @@
+icgc_donor_id	project_code	study_donor_involved_in	submitted_donor_id	donor_sex	donor_vital_status	disease_status_last_followup	donor_relapse_type	donor_age_at_diagnosis	donor_age_at_enrollment	donor_age_at_last_followup	donor_relapse_interval	donor_diagnosis_icd10	donor_tumour_staging_system_at_diagnosis	donor_tumour_stage_at_diagnosis	donor_tumour_stage_at_diagnosis_supplemental	donor_survival_time	donor_interval_of_last_followup	prior_malignancy	cancer_type_prior_malignancy	cancer_history_first_degree_relative
+DO48557	PAEN-AU	PCAWG	ICGC_0533	male	alive	stable		52	52			C25.4	TNM			227	227	unknown		unknown
+DO48554	PAEN-AU	PCAWG	ICGC_0492	male	alive	stable		38	38			C25.4	TNM			275	275	unknown		unknown
+DO48553	PAEN-AU	PCAWG	ICGC_0491	male	alive	stable		64	64			C25.4	TNM			482	482	unknown		unknown
+DO48549	PAEN-AU		ICGC_0460	male	alive	stable		40	40			C25.4	TNM			385	385	unknown		unknown
+DO48542	PAEN-AU		ICGC_0458	male	alive	stable		71	71			C25.4	TNM			280	280	unknown		unknown
+DO48545	PAEN-AU	PCAWG	ICGC_0459	male	alive	stable		56	56			C25.4	TNM			370	370	unknown		unknown
+DO48541	PAEN-AU	PCAWG	ICGC_0489	male	alive	stable		68	68			C25.4	TNM			429	429	unknown		unknown
+DO48539	PAEN-AU	PCAWG	ICGC_0457	male	deceased	progression	local recurrence	38	38		116	C25.4	TNM			209	209	unknown		unknown
+DO48536	PAEN-AU		ICGC_0454	female	alive	stable		72	72			C25.4	TNM			217	217	unknown		unknown
+DO48531	PAEN-AU		ICGC_0451	female	alive	stable		65	65			C25.4	TNM			312	312	unknown		unknown
+DO48530	PAEN-AU		ICGC_0450	male	alive	stable		33	33			C25.4	TNM			405	405	unknown		unknown
+DO48526	PAEN-AU		ICGC_0445	male	alive	progression	distant recurrence/metastasis	36	36		2708	C25.4	TNM			6360	6360	unknown		unknown
+DO48520	PAEN-AU	PCAWG	ICGC_0443	female	alive	stable		59	59			C25.4	TNM			537	537	unknown		unknown
+DO48522	PAEN-AU		ICGC_0444	female	alive	stable		51	51			C25.4	TNM			926	926	unknown		unknown
+DO48519	PAEN-AU		ICGC_0442	male	alive	stable		41	41			C25.4	TNM			901	901	unknown		unknown
+DO48510	PAEN-AU		ICGC_0430	female	alive	stable		53	53		937	C7A.010	TNM			1332	1332	unknown		unknown
+DO48506	PAEN-AU		ICGC_0429	female	deceased	progression	local recurrence	47	47		67	C25.4	TNM			1222	1222	unknown		unknown
+DO48503	PAEN-AU		ICGC_0426	female	alive	stable		35	35			C25.4	TNM			1816	1816	unknown		unknown
+DO48578	PAEN-AU	PCAWG	ICGC_0498	female	alive	progression		59	59			C25.4	TNM			7	7	unknown		unknown
+DO48574	PAEN-AU	PCAWG	ICGC_0500	female	alive	stable		75	75			C25.4	TNM			61	61	unknown		unknown
+DO48573	PAEN-AU	PCAWG	ICGC_0497	male	alive	stable		71	71			C25.4	TNM			242	242	unknown		unknown
+DO48581	PAEN-AU	PCAWG	ICGC_0501	male	alive	stable		64	64			C25.4	TNM			40	40	unknown		unknown
+DO48580	PAEN-AU		ICGC_0539	female	alive	stable		71	71			C25.4	TNM			17	17	unknown		unknown
+DO48564	PAEN-AU		ICGC_0534	female	alive	stable		68	68			C25.4	TNM			270	270	unknown		unknown
+DO48567	PAEN-AU		ICGC_0495	female	alive	stable		61	61			C25.4	TNM			19	19	unknown		unknown
+DO48560	PAEN-AU		ICGC_0494	male	alive	stable		51	51			C25.4	TNM			132	132	unknown		unknown
+DO48563	PAEN-AU		ICGC_0461	male	alive	stable		55	55			C25.4	TNM			229	229	unknown		unknown
+DO48570	PAEN-AU		ICGC_0496	female	alive	stable		76	76			C25.4	TNM			272	272	unknown		unknown
+DO50305	PAEN-AU		ICGC_0222	female	deceased	progression	distant recurrence/metastasis	51	51		401	C25.0	TNM			548	548	unknown		unknown
+DO46783	PAEN-AU	PCAWG	ICGC_0455	male	alive	stable		78	78			C25.4				350	350	unknown		unknown
+DO46785	PAEN-AU	PCAWG	ICGC_0456	male	alive	progression	distant recurrence/metastasis	59	59			C25.4				392	392	unknown		unknown
+DO46781	PAEN-AU	PCAWG	ICGC_0453	male	alive	stable		56	56			C25.4				328	328	unknown		unknown
+DO46779	PAEN-AU	PCAWG	ICGC_0452	male	alive	stable		77	77			C25.4				437	437	unknown		unknown
+DO46777	PAEN-AU	PCAWG	ICGC_0449	male	alive	stable		81	81			C25.4				453	453	unknown		unknown
+DO46771	PAEN-AU	PCAWG	ICGC_0446	female	alive	stable		45	45			C25.4				652	652	unknown		unknown
+DO46773	PAEN-AU	PCAWG	ICGC_0447	female	alive	stable		44	44			C25.4				576	576	unknown		unknown
+DO46769	PAEN-AU	PCAWG	ICGC_0441	female	alive	stable		69	69			C25.4				638	638	unknown		unknown
+DO46765	PAEN-AU	PCAWG	ICGC_0439	female	alive	progression	distant recurrence/metastasis	38	38		292	C25.4				779	779	unknown		unknown
+DO46767	PAEN-AU	PCAWG	ICGC_0440	female	alive	stable		65	65			C25.4				608	608	unknown		unknown
+DO46761	PAEN-AU	PCAWG	ICGC_0437	female	alive	stable		67	67			C25.4				764	764	unknown		unknown
+DO46763	PAEN-AU	PCAWG	ICGC_0438	male	alive	progression	distant recurrence/metastasis	79	79		535	C25.4				870	870	unknown		unknown
+DO46757	PAEN-AU	PCAWG	ICGC_0435	male	alive	stable		66	66			C25.4				503	503	unknown		unknown
+DO46759	PAEN-AU	PCAWG	ICGC_0436	male	alive	progression	distant recurrence/metastasis	61	61		457	C25.4				903	903	unknown		unknown
+DO46753	PAEN-AU	PCAWG	ICGC_0433	female	alive	stable		59	59			C25.4				1173	1173	unknown		unknown
+DO46755	PAEN-AU	PCAWG	ICGC_0434	male	deceased	stable		59	59			C25.4				25	25	unknown		unknown
+DO46751	PAEN-AU	PCAWG	ICGC_0432	male	deceased	progression	distant recurrence/metastasis	76	76		450	C25.4				600	600	unknown		unknown
+DO46747	PAEN-AU	PCAWG	ICGC_0428	male	deceased	stable		74	74			C25.4				102	102	unknown		unknown
+DO46749	PAEN-AU	PCAWG	ICGC_0431	male	alive	stable		78	78			C25.4				1379	1379	unknown		unknown
+DO46744	PAEN-AU	PCAWG	ICGC_0425	male	alive	stable		69	69			C25.4				1916	1916	unknown		unknown
+DO46745	PAEN-AU	PCAWG	ICGC_0427	male	alive	stable		48	48			C25.4				1803	1803	unknown		unknown
+DO51169	PAEN-AU	PCAWG	ITNET-1081	male	alive	stable		35	35	37		C25.4				708	708	unknown		unknown
+DO51187	PAEN-AU	PCAWG	ITNET-1320	female	alive	progression	distant recurrence/metastasis	69	69	76	121	C25.4				2318	2318	unknown		unknown
+DO51180	PAEN-AU	PCAWG	ITNET-1308	male	alive	stable		56	56			C25.4						unknown		unknown
+DO51181	PAEN-AU	PCAWG	ITNET-1309	female	alive	stable		26	26	33		C25.4				2402	2402	unknown		unknown
+DO51182	PAEN-AU	PCAWG	ITNET-1312	male	deceased	progression	distant recurrence/metastasis	50	50	52		C25.4				522	522	unknown		unknown
+DO51184	PAEN-AU	PCAWG	ITNET-1314	female	alive	stable		34	34	41		C25.4				2345	2345	unknown		unknown
+DO51185	PAEN-AU	PCAWG	ITNET-1317	male	alive	stable		17	17			C25.4						unknown		unknown
+DO51175	PAEN-AU	PCAWG	ITNET-1286	female	deceased	stable		71	71	72		C25.4				413	413	unknown		unknown
+DO51176	PAEN-AU	PCAWG	ITNET-1288	female	alive	progression	distant recurrence/metastasis	64	64	68	1132	C25.4				1378	1378	unknown		unknown
+DO51177	PAEN-AU	PCAWG	ITNET-1293	male	alive	stable		36	36	39		C25.4				1072	1072	unknown		unknown
+DO51178	PAEN-AU	PCAWG	ITNET-1301	male	deceased	progression	distant recurrence/metastasis	53	53	53		C25.4				121	121	unknown		unknown
+DO51179	PAEN-AU	PCAWG	ITNET-1304	male	alive	stable		64	64	71		C25.4				2456	2456	unknown		unknown
+DO51170	PAEN-AU	PCAWG	ITNET-1257	male	alive	stable		41	41	49		C25.4				3016	3016	unknown		unknown
+DO51171	PAEN-AU	PCAWG	ITNET-1265	female	alive	stable		74	74	82		C25.4				2943	2943	unknown		unknown
+DO51172	PAEN-AU	PCAWG	ITNET-1266	male	alive	progression	distant recurrence/metastasis	62	62	69	2300	C25.4				2723	2723	unknown		unknown
+DO51173	PAEN-AU	PCAWG	ITNET-1270	female	alive	stable		39	39	42		C25.4				1244	1244	unknown		unknown
+DO51174	PAEN-AU	PCAWG	ITNET-1273	male	alive	stable		63	63	68		C25.4				1519	1519	unknown		unknown

@@ -5,4 +5,8 @@ data/methylome/anotation/infinium-methylationepic-v-1-0-b5-manifest-file.csv
 data/master_regulators/ARACNe-AP
 data/master_regulators/expression_aracne.tsv
 Rplots.pdf
+data/external_data/Lakis_PANET/copy_number_somatic_mutation.PAEN-AU.tsv
+data/external_data/Lakis_PANET/meth_array.PAEN-AU.tsv
+data/external_data/Lakis_PANET/rnaseq_Lakis.tsv
+data/external_data/Lakis_PANET/simple_somatic_mutation.open.PAEN-AU.tsv
 
