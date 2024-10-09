@@ -10,5 +10,7 @@ data/external_data/Lakis_PANET/meth_array.PAEN-AU.tsv
 data/external_data/Lakis_PANET/rnaseq_Lakis.tsv
 data/external_data/Lakis_PANET/simple_somatic_mutation.open.PAEN-AU.tsv
 data/external_data/Lakis_PANET/simple_somatic_mutation.open.PAEN-AU.tsv
-data/external_data/Alcala_LUNGNET/EGAD00010001720/*
-data/external_data/Alcala_LUNGNET/read_counts_all.txt
+data/external_data/Alcala_LUNET/IDAT/*
+data/external_data/Alcala_LUNET/read_counts_all.txt
+data/external_data/Karpathakis_SINET/AKGINETDASL_allTvsallN_expressiontable_normback_geneandpval_030414.txt
+data/external_data/Karpathakis_SINET/matrix.txt
