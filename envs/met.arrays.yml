@@ -1,0 +1,19 @@
+name: met.arrays
+channels:
+  - bu_cnio
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - r-base=4.3.2
+  - bioconductor-enmix=1.36.01
+  - bioconductor-watermelon=2.6.0
+  - r-mass=7.3_60
+  - r-broom=1.0.5
+  - bioconductor-minfi=1.46.0
+  - bioconductor-illuminahumanmethylation450kmanifest
+  - bioconductor-illuminahumanmethylation450kanno.ilmn12.hg19
+  - bioconductor-illuminahumanmethylationepicanno.ilm10b4.hg19
+  - bioconductor-illuminahumanmethylationepicmanifest 
+  - bioconductor-enmix
+

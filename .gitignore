@@ -14,3 +14,6 @@ data/external_data/Alcala_LUNET/IDAT/*
 data/external_data/Alcala_LUNET/read_counts_all.txt
 data/external_data/Karpathakis_SINET/AKGINETDASL_allTvsallN_expressiontable_normback_geneandpval_030414.txt
 data/external_data/Karpathakis_SINET/matrix.txt
+data/external_data/Karpathakis_SINET/simple_somatic_mutation.open.PAEN-AU.tsv
+data/external_data/Laddha_LUNET/IDAT/*
+
