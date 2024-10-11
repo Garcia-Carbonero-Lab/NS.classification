@@ -65,9 +65,24 @@ base_Lakis$Status <- ifelse(base_Lakis$Status == "alive",0,1)
 
 base_Lakis$paper <- rep("Lakis_PANET", nrow(base_Lakis))
 
-columns_prev <- colnames(base)[!colnames(base) %in% colnames(base_Lakis)]
+#select samples in expression and methylation
+
+expression.Lakis <- read.table(paste0(wkdir, "/validation/Lakis/matrix_Lakis_expression.txt"),
+sep = "\t",row.names = 1, header = T,nrows = 3)
+
+methylation.Lakis <- read.table(paste0(wkdir, "/validation/Lakis/Methylation_M_Lakis.tsv"),
+sep = "\t",
+row.names = 1,
+header = T,
+nrows = 3
+)
+
+patients <- intersect(colnames(expression.Lakis),colnames(methylation.Lakis))
+
+base_Lakis <- base_Lakis[rownames(base_Lakis) %in% patients,]
 
 base <- base_Lakis
+
 #############################################################################
 # Alcala
 
@@ -109,6 +124,17 @@ levels(base_Alcala$Stage) <- c("I","I","I","I","I","I","II","II","III","III","IV
 base_Alcala$Clusters <- as.factor(base_Alcala$Clusters)
 levels(base_Alcala$Clusters) <- c("Carcinoid-A1", "Carcinoid-A2","Carcinoid-B")
 
+exp.Alcala <- read.table(paste0(wkdir, "/validation/Alcala/Alcala.expression.tsv"),
+sep = "\t",row.names = 1, header = T,nrows = 3)
+
+met.Alcala <- read.table(paste0(wkdir, "/validation/Alcala/Alcala_M.tsv"),
+sep = "\t",row.names = 1, header = T,nrows = 3)
+
+patients <- intersect(colnames(exp.Alcala),colnames(met.Alcala))
+
+base_Alcala <- base_Alcala[rownames(base_Alcala) %in% patients,]
+
+
 columns_prev <- colnames(base)[!colnames(base) %in% colnames(base_Alcala)]
 
 for (column in columns_prev){
@@ -129,49 +155,79 @@ base[,column] <- rep(NA, nrow(base))
 
 base_Alcala <- base_Alcala[,colnames(base)]
 
+
+
+
+
 base <- rbind(base,base_Alcala)
 ############################################################################################
 #Laddha
 #SAMPLES IN LADDHA ARE IN ALCALA
 
-GSE118131 <- getGEO("GSE118131", GSEMatrix =TRUE)
-GSE118131 <- GSE118131[[1]]
-base_Laddha <- pData(phenoData(GSE118131))
+#The anotation below is the code used to obtain the clinical data associated to 
 
-srr <- c("SRR7646229" ,"SRR7646230" ,"SRR7646231" ,"SRR7646232"
- ,"SRR7646233" ,"SRR7646234" ,"SRR7646235" ,"SRR7646236" ,"SRR7646237"
-  ,"SRR7646238" ,"SRR7646239" ,"SRR7646240" ,"SRR7646241" ,"SRR7646242" 
-  ,"SRR7646243" ,"SRR7646244" ,"SRR7646245" ,"SRR7646246" ,"SRR7646247" 
-  ,"SRR7646248" ,"SRR7646249" ,"SRR7646250" ,"SRR7646251" ,"SRR7646252" ,"SRR7646253"
- ,"SRR7646254" ,"SRR7646255" ,"SRR7646256" ,"SRR7646257" ,"SRR7646258")
+#The code is commented because there are some probles with download the 
+# the GSE118132 phenodata : 
+# GSE118132 <- getGEO("GSE118132", GSEMatrix =TRUE, getGPL=FALSE)
+#Timeout was reached: [] Operation timed out after 120000 milliseconds
+# and several times are needed to download phenodata. Thus clinical data
+# are already prepare in data folder  
 
-base_Laddha$srr <- srr 
+#GSE118131 <- getGEO("GSE118131", GSEMatrix =TRUE)
+#GSE118131 <- GSE118131[[1]]
+#base_Laddha <- pData(phenoData(GSE118131))
 
-columns <- c("title","srr","age (years):ch1", "cell type:ch1", "diagnosis:ch1"
-, "gender:ch1", "lcs subtype:ch1", "phenotype:ch1", "tumor location:ch1")
+#srr <- c("SRR7646229" ,"SRR7646230" ,"SRR7646231" ,"SRR7646232"
+# ,"SRR7646233" ,"SRR7646234" ,"SRR7646235" ,"SRR7646236" ,"SRR7646237"
+#  ,"SRR7646238" ,"SRR7646239" ,"SRR7646240" ,"SRR7646241" ,"SRR7646242" 
+#  ,"SRR7646243" ,"SRR7646244" ,"SRR7646245" ,"SRR7646246" ,"SRR7646247" 
+#  ,"SRR7646248" ,"SRR7646249" ,"SRR7646250" ,"SRR7646251" ,"SRR7646252" ,"SRR7646253"
+# ,"SRR7646254" ,"SRR7646255" ,"SRR7646256" ,"SRR7646257" ,"SRR7646258")
 
+#base_Laddha$srr <- srr 
 
-base_Laddha <- base_Laddha[,columns]
-
-rownames(base_Laddha) <- base_Laddha$srr
-
-base_Laddha <- base_Laddha[,3:ncol(base_Laddha)]
-
-colnames(base_Laddha) <- c("Age", "tissue", "Differenciation", "Gender", "Clusters", "primary.tumor", "tumor.location") 
-
-base_Laddha$tissue <- rep("Primary.tumor",nrow(base_Laddha))
-base_Laddha$Differenciation <- as.factor(base_Laddha$Differenciation)
-levels(base_Laddha$Differenciation) <- c("NET.atypical", "NET.typical")
-
-base_Laddha$Gender <- as.factor(base_Laddha$Gender)
-levels(base_Laddha$Gender) <- c("Female", "Male")
+#columns <- c("title","srr","age (years):ch1", "cell type:ch1", "diagnosis:ch1"
+#, "gender:ch1", "lcs subtype:ch1", "phenotype:ch1", "tumor location:ch1")
 
 
-base_Laddha$Clusters <- as.factor(base_Laddha$Clusters)
-levels(base_Laddha$Clusters) <- c("LC1", "LC2", "LC3")
+#base_Laddha <- base_Laddha[,columns]
 
-base_Laddha$primary.tumor <- rep("lung", nrow(base_Laddha))
-base_Laddha$paper <- rep("Laddha_LUNET",nrow(base_Laddha))
+#GSE118132 <- getGEO("GSE118132", GSEMatrix =TRUE, getGPL=FALSE)
+#GSE118132 <- GSE118132[[1]]
+#base_Laddha2 <- pData(phenoData(GSE118132))
+#base_Laddha2 <- base_Laddha2[,c("title","geo_accession")]
+
+#base_Laddha <- merge(base_Laddha, base_Laddha2,by = "title",all = F)
+#base_Laddha <- base_Laddha[,-1]
+#rownames(base_Laddha) <- base_Laddha$srr
+#base$geo <- rep(NA,nrow(base))
+#base[base_Laddha$srr,"geo"] <- base_Laddha$geo_accession
+#base_Laddha <- base_Laddha[,-1]
+
+#colnames(base_Laddha) <- c("Age", "tissue", "Differenciation", "Gender", "Clusters", "primary.tumor", "tumor.location","geo") 
+
+#base_Laddha$tissue <- rep("Primary.tumor",nrow(base_Laddha))
+#base_Laddha$Differenciation <- as.factor(base_Laddha$Differenciation)
+#levels(base_Laddha$Differenciation) <- c("NET.atypical", "NET.typical")
+
+#base_Laddha$Gender <- as.factor(base_Laddha$Gender)
+#levels(base_Laddha$Gender) <- c("Female", "Male")
+
+
+#base_Laddha$Clusters <- as.factor(base_Laddha$Clusters)
+#levels(base_Laddha$Clusters) <- c("LC1", "LC2", "LC3")
+
+#base_Laddha$primary.tumor <- rep("lung", nrow(base_Laddha))
+#base_Laddha$paper <- rep("Laddha_LUNET",nrow(base_Laddha))
+
+#write.table(base_Laddha, "data/external_data/Laddha_LUNET/base_Laddha.tsv",
+#sep = "\t", row.names = T, col.names = NA)
+
+base_Laddha <- read.table("data/external_data/Laddha_LUNET/base_Laddha.tsv",
+sep = "\t",
+row.names = 1,
+header = T)
+
 
 columns_prev <- colnames(base)[!colnames(base) %in% colnames(base_Laddha)]
 
@@ -222,6 +278,18 @@ levels(base_Karpathakis$tissue) <- c("Liver", "Mesenteric","Lymph.node", "Primar
 
 base_Karpathakis$paper <- rep("Karpathakis_SINET", nrow(base_Karpathakis))
 
+expression.Karpathakis <- read.table(paste0(wkdir, "/validation/Karpathakis/Karpathakis.expression.tsv"),
+sep = "\t",row.names = 1, header = T,nrows = 3)
+
+methylation.Karpathakis <- read.table(paste0(wkdir, "/validation/Karpathakis/Methylation_M_Karpathakis.tsv"),
+sep = "\t",row.names = 1, header = T,nrows = 3)
+
+patients <- intersect(colnames(expression.Karpathakis),colnames(methylation.Karpathakis))
+
+patients <- patients[patients %in% rownames(base_Karpathakis)]
+
+base_Karpathakis <- base_Karpathakis[patients,]
+
 columns_prev <- colnames(base)[!colnames(base) %in% colnames(base_Karpathakis)]
 
 for (column in columns_prev){
@@ -243,8 +311,6 @@ base[,column] <- rep(NA, nrow(base))
 base_Karpathakis <- base_Karpathakis[,colnames(base)]
 
 base <- rbind(base,base_Karpathakis)
-
-base <- base[complete.cases(base[,1]),]
 
 rownames(base)[base$paper == "Laddha_LUNET"] <- rownames(base_Laddha)
 
