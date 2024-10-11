@@ -33,6 +33,24 @@ library(broom)
 library(IlluminaHumanMethylation450kmanifest)
 library(IlluminaHumanMethylation450kanno.ilmn12.hg19)
 
+
+# Load configuration file to get working and data directory paths
+config <- read.csv("config/config.tsv",
+sep = "\t",
+header = T)
+
+# Extract key-value pairs for configuration settings
+keys <- config$key
+values <- config$value
+names(values) <- keys
+
+# Define working directory and data directory from the configuration file
+wkdir <- values["wkdir"]
+datadir <- values["datadir"]
+
+# Load custom validation functions
+source("functions/validation/validation.functions.R")
+
 ############### Configuration and Directory Setup ###############
 # Create output directories if they don't exist
 
@@ -51,22 +69,6 @@ if (dir.exists(paste0(wkdir, "/validation/Laddha")) == F) {
 # Define the output directory for results
 outdir <- paste0(wkdir, "/validation/Laddha")
 
-# Load configuration file to get working and data directory paths
-config <- read.csv("config/config.tsv",
-sep = "\t",
-header = T)
-
-# Extract key-value pairs for configuration settings
-keys <- config$key
-values <- config$value
-names(values) <- keys
-
-# Define working directory and data directory from the configuration file
-wkdir <- values["wkdir"]
-datadir <- values["datadir"]
-
-# Load custom validation functions
-source("functions/validation/validation.functions.R")
 
 
 ############### Methylation Data Processing ###############
