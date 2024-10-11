@@ -1,18 +1,46 @@
-# this  script uses geo environment
+###########################################################
+# Script: Validation Cohort Preparation for Multiple Studies
+#
+# Description:
+#     This script prepares a combined clinical dataset from multiple studies
+#     (Lakis, Alcala, Laddha, Karpathakis) by loading, cleaning, and standardizing
+#     their clinical metadata. The output is a unified table of samples with
+#     associated attributes, ready for further validation analysis.
+#
+# Requirements:
+#     - GEO environment with required packages.
+#     - Clinical data for multiple studies in tsv files.
+#
+# Inputs:
+#     - Clinical metadata for each study.
+#     - Pre-processed expression and methylation data for filtering.
+#
+# Outputs:
+#     - Unified clinical dataset in `Base_validation.tsv`.
+#
+# Required environment: `geo` (contains necessary libraries for processing).
+###########################################################
+
+############### Load Required Libraries ###############
 library(tidyverse)
 library(GEOquery)
 
+############### Configuration and Directory Setup ###############
+# Load configuration file to get working and data directory paths
 config <- read.csv("config/config.tsv",
 sep = "\t",
 header = T)
 
+# Extract key-value pairs for configuration settings
 keys <- config$key
 values <- config$value
 names(values) <- keys
+
+# Define working directory and data directory from configuration file
 wkdir <- values["wkdir"]
 datadir <- values["datadir"]
 
-
+# Create necessary directories if they don't exist
 if (dir.exists(paste0(wkdir, "/validation")) == F) {
 
     dir.create(paste0(wkdir, "/validation"))
@@ -25,20 +53,23 @@ if (dir.exists(paste0(wkdir, "/validation/base")) == F) {
 
 }
 
+# Define output directory for results
 outdir <- paste0(wkdir, "/validation/base")
 
 
 ##################################################################
-#Lakis
+# Lakis Study Data Processing
+
+# Load Lakis clinical base file
 
 base_Lakis <- read.table(paste0(wkdir, "/validation/Lakis/base_Lakis.tsv"),
 sep = "\t", row.names = 1, header = T)
 
+# Reformat rownames and drop first column
 rownames(base_Lakis) <- base_Lakis[,1]
-
 base_Lakis <- base_Lakis[,-1]
-head(base_Lakis)
 
+# Convert relevant columns to factors and recode levels
 base_Lakis$Gender <- as.factor(base_Lakis$Gender)
 levels(base_Lakis$Gender) <- c("Female", "Male")
 
@@ -59,14 +90,15 @@ base_Lakis$Stage <- as.factor(base_Lakis$Stage)
 levels(base_Lakis$Stage) <- c(NA, "I", "I", "I","II","II","III","III",
 "III","II","II","II","II", "IV","III","III","III")
 
+# Adjust survival status and survival time to months
 base_Lakis$Overall.survival <- base_Lakis$Overall.survival / 30.41
 
 base_Lakis$Status <- ifelse(base_Lakis$Status == "alive",0,1)
 
+# Label study source
 base_Lakis$paper <- rep("Lakis_PANET", nrow(base_Lakis))
 
-#select samples in expression and methylation
-
+# Filter samples based on common availability in expression and methylation data
 expression.Lakis <- read.table(paste0(wkdir, "/validation/Lakis/matrix_Lakis_expression.txt"),
 sep = "\t",row.names = 1, header = T,nrows = 3)
 
@@ -79,16 +111,20 @@ nrows = 3
 
 patients <- intersect(colnames(expression.Lakis),colnames(methylation.Lakis))
 
+# Initialize base dataset
 base_Lakis <- base_Lakis[rownames(base_Lakis) %in% patients,]
 
 base <- base_Lakis
 
 #############################################################################
-# Alcala
+# Alcala Study Data Processing
+
+# Load Alcala clinical base file
 
 base_Alcala <- read.table(paste0(datadir, "/external_data/Alcala_LUNET/Attributes.txt"),
 sep = "\t", row.names = 1, header = T)
 
+# Select specific columns and rename them
 columns <- c("Age", "Sex", "Smoking_status", "Survival_months", "Survival_censor",
 "Histopathology", "Stage_UICC", "cluster_LNET")
 
@@ -97,6 +133,7 @@ base_Alcala <- base_Alcala[,columns]
 colnames(base_Alcala) <- c("Age", "Gender", "Smoking",
 "Overall.survival","Status", "Differenciation", "Stage","Clusters")
 
+# Convert relevant columns to factors and recode levels
 base_Alcala$Gender <- as.factor(base_Alcala$Gender)
 levels(base_Alcala$Gender) <- c("Female", "Male")
 
@@ -106,7 +143,7 @@ levels(base_Alcala$Grade) <- c("G2",NA,"G3","G3", "G3", "G3","G3","G1")
 base_Alcala$Differenciation <- as.factor(base_Alcala$Differenciation)
 levels(base_Alcala$Differenciation) <- c("NET.atypical", "NET", "Carcinoma","Carcinoma",
 "Carcinoma", "Carcinoma","Carcinoma","NET.typical")
-
+# Remove carcinoma samples and set additional variables
 base_Alcala <- base_Alcala[base_Alcala$Differenciation != "Carcinoma",]
 
 base_Alcala$primary.tumor <- rep("lung", nrow(base_Alcala))
@@ -114,7 +151,7 @@ base_Alcala$primary.tumor <- rep("lung", nrow(base_Alcala))
 base_Alcala$tissue <- rep("Primary.tumor", nrow(base_Alcala))
 
 base_Alcala$paper <- rep("Alcala_LUNET", nrow(base_Alcala))
-
+# Recode survival status
 base_Alcala$Status <- as.factor(base_Alcala$Status)
 levels(base_Alcala$Status) <- c(0,1)
 
@@ -123,7 +160,7 @@ levels(base_Alcala$Stage) <- c("I","I","I","I","I","I","II","II","III","III","IV
 
 base_Alcala$Clusters <- as.factor(base_Alcala$Clusters)
 levels(base_Alcala$Clusters) <- c("Carcinoid-A1", "Carcinoid-A2","Carcinoid-B")
-
+# Filter samples based on availability in expression and methylation data
 exp.Alcala <- read.table(paste0(wkdir, "/validation/Alcala/Alcala.expression.tsv"),
 sep = "\t",row.names = 1, header = T,nrows = 3)
 
@@ -134,7 +171,7 @@ patients <- intersect(colnames(exp.Alcala),colnames(met.Alcala))
 
 base_Alcala <- base_Alcala[rownames(base_Alcala) %in% patients,]
 
-
+# Harmonize column structure with base dataset
 columns_prev <- colnames(base)[!colnames(base) %in% colnames(base_Alcala)]
 
 for (column in columns_prev){
@@ -158,16 +195,14 @@ base_Alcala <- base_Alcala[,colnames(base)]
 
 
 
-
+# Append Alcala study data to base
 base <- rbind(base,base_Alcala)
 ############################################################################################
-#Laddha
-#SAMPLES IN LADDHA ARE IN ALCALA
+############################################################################################
+# Laddha Study Data Preparation (Commented Out)
+# Annotations to load clinical data for Laddha (commented due to download issues)
+# Clinical data is already prepared in the data folder.
 
-#The anotation below is the code used to obtain the clinical data associated to 
-
-#The code is commented because there are some probles with download the 
-# the GSE118132 phenodata : 
 # GSE118132 <- getGEO("GSE118132", GSEMatrix =TRUE, getGPL=FALSE)
 #Timeout was reached: [] Operation timed out after 120000 milliseconds
 # and several times are needed to download phenodata. Thus clinical data
@@ -223,12 +258,13 @@ base <- rbind(base,base_Alcala)
 #write.table(base_Laddha, "data/external_data/Laddha_LUNET/base_Laddha.tsv",
 #sep = "\t", row.names = T, col.names = NA)
 
+# Load pre-prepared clinical data for Laddha
 base_Laddha <- read.table("data/external_data/Laddha_LUNET/base_Laddha.tsv",
 sep = "\t",
 row.names = 1,
 header = T)
 
-
+# Harmonize column structure with base dataset
 columns_prev <- colnames(base)[!colnames(base) %in% colnames(base_Laddha)]
 
 for (column in columns_prev){
@@ -249,16 +285,20 @@ base[,column] <- rep(NA, nrow(base))
 }
 
 base_Laddha <- base_Laddha[,colnames(base)]
-
+# Append Laddha study data to base
 base <- rbind(base,base_Laddha)
-######################################################################################
-# Karpathakis
 
+
+######################################################################################
+# Karpathakis Study Data Processing
+
+# Load Karpathakis clinical base file
 base_Karpathakis <- read.table(paste0(datadir,"/external_data/Karpathakis_SINET/Base_Karpathakis.tsv"),
 sep = "\t", row.names = 1, header = T)
-
+# Remove rows corresponding to cell lines or missing gender data
 base_Karpathakis <- base_Karpathakis[which(base_Karpathakis$Gender != "cell line" | is.na(base_Karpathakis$Gender)),]
 
+# Convert relevant columns to factors and recode levels
 base_Karpathakis$Gender <- as.factor(base_Karpathakis$Gender)
 levels(base_Karpathakis$Gender) <- c("Female", "Male")
 
@@ -270,14 +310,15 @@ levels(base_Karpathakis$primary.tumor) <- c("appendix", "colorrectal","stomach",
 
 base_Karpathakis <- base_Karpathakis[which(base_Karpathakis$primary.tumor == "small.intestine"),]
 
-#N are normals
-
 base_Karpathakis$tissue[grep("_N",base_Karpathakis$Patient)] <- "Normal"
 base_Karpathakis$tissue <- as.factor(base_Karpathakis$tissue)
 levels(base_Karpathakis$tissue) <- c("Liver", "Mesenteric","Lymph.node", "Primary.tumor", "Mesenteric")
 
+# Label study source
 base_Karpathakis$paper <- rep("Karpathakis_SINET", nrow(base_Karpathakis))
 
+
+# Filter samples based on availability in expression and methylation data
 expression.Karpathakis <- read.table(paste0(wkdir, "/validation/Karpathakis/Karpathakis.expression.tsv"),
 sep = "\t",row.names = 1, header = T,nrows = 3)
 
@@ -290,6 +331,7 @@ patients <- patients[patients %in% rownames(base_Karpathakis)]
 
 base_Karpathakis <- base_Karpathakis[patients,]
 
+# Harmonize column structure with base dataset
 columns_prev <- colnames(base)[!colnames(base) %in% colnames(base_Karpathakis)]
 
 for (column in columns_prev){
@@ -310,11 +352,13 @@ base[,column] <- rep(NA, nrow(base))
 
 base_Karpathakis <- base_Karpathakis[,colnames(base)]
 
+# Append Karpathakis study data to base
 base <- rbind(base,base_Karpathakis)
 
 rownames(base)[base$paper == "Laddha_LUNET"] <- rownames(base_Laddha)
 
-
+##############################################################################################
+# Output final combined dataset
 write.table(base, paste0(outdir, "/Base_validation.tsv"),
 sep = "\t",
 row.names = T,
