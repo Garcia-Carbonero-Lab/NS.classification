@@ -133,7 +133,7 @@ exp <- read.table(paste0(wkdir,
 )
 
 # Filter the combined expression matrix to include only the genes used in the MOFA model
-combination <- combination[rownames(exp),]
+combination <- combination[rownames(combination) %in% rownames(exp),]
 
 # Write the filtered expression matrix for MOFA model to a file
 write.table(combination,

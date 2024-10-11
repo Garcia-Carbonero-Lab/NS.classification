@@ -22,7 +22,7 @@
 #     - Combined methylation matrix for all studies (`methylation_all.tsv`).
 #     - Filtered methylation matrix for MOFA model (`methylation.fs.txt`).
 #
-# Required environment: `R` with `tidyverse` package installed.
+# Required environment: preprocess
 ###########################################################
 
 ############### Load Required Libraries ###############
@@ -154,7 +154,7 @@ met <- read.table(paste0(wkdir,
 )
 
 # Filter the combined methylation matrix to include only the probes used in the MOFA model
-methylation <- methylation[rownames(met),]
+methylation <- methylation[rownames(methylation) %in% rownames(met),]
 
 # Write the filtered methylation matrix for MOFA model to a file
 write.table(methylation,
