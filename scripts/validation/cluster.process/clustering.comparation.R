@@ -13,6 +13,8 @@
 #
 # Outputs:
 #     - Updated validation dataset with renamed subtypes
+#
+# Required environment: `any with R installed`
 ###############################################################################
 # Load configuration file to get working and data directories
 config <- read.csv("config/config.tsv",
