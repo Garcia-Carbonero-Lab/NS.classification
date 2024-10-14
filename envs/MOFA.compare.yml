@@ -1,0 +1,12 @@
+name: MOFA.compare
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - r
+dependencies:
+  - bioconductor-mofa2=1.8.0
+  - r-ggplot2=3.4.2
+  - r-tidyverse=1.3.2
+  - r-base=4.2.0
+  - r-ggcorrplot=0.1.4
