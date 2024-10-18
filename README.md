@@ -82,21 +82,54 @@ Once the molecular subtypes were identified, we analyzed the molecular and clini
 9. **Prognostic impact of differentially expressed genes and methylation probes**: `scripts/classification/analysis/prognostic.features.R` (survival environment)
 10. **Correlation between gene expression and CpG methylation**: `scripts/classification/analysis/corr.met.exp.R` (correlation.exp.met environment)
 
-# Validation analysis
-To corroborate the robustenss of the results obtained. The same analysis aproach has been applied in external coohort of patienst with transcptomic and methylation data available.This external cohort consist in samples from 4 different studies and three different primary tumors:
+# Validation Analysis
 
-- [Alcala et al](https://pubmed.ncbi.nlm.nih.gov/31431620/) study: This cohort consist in 34 lung NETs. Transcriptomic data is avaiable in EGA under the code [EGAD00010001719](https://ega-archive.org/datasets/EGAD00010001719) and also can be download within clinical data from Fernandez-Cuesta lab github [IARCbioinfo/DRMetrics](https://github.com/IARCbioinfo/DRMetrics). Methylation data is also avaiavle in EGA under the code [EGAD00010001720](https://ega-archive.org/datasets/EGAD00010001720).
-- [Laddha et al](https://pubmed.ncbi.nlm.nih.gov/31300474/) study: This cohort consist in 18 lung NETs. Transcriptomic data is avaiable in GEO under the code [GSE118131](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE118131) and in the same matrix as Alcala et al data in Fernaned-Cuesta lab github [IARCbioinfo/DRMetrics](https://github.com/IARCbioinfo/DRMetrics). Methylation data is avaiable under the code [GSE118132](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE118132).
-- [Lakis et al](https://pmc.ncbi.nlm.nih.gov/articles/PMC7859232/) study: This cohort consist in 11 pancreatic NETs. Transcriptomic , metilomic and clinical data were avaiable in ICGC portal until June 2024. Please to obtain this data contact with us (ccarretero.imas12@h12o.es)
-- [Karpathakis et al](https://pubmed.ncbi.nlm.nih.gov/26169971/) study: This cohort consist in 27 small intestine NETs. Metthylomic data is avaiable under the code [GEO73832](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE73832). Transcriptomic and clinical data however are avaiable under authors request please contact them.
+To corroborate the robustness of the results obtained, the same analysis approach has been applied to an external cohort of patients with transcriptomic and methylation data available. This external cohort consists of samples from four different studies and three different primary tumors:
 
-## Preprocess public data
+- **[Alcala et al.](https://pubmed.ncbi.nlm.nih.gov/31431620/)**: This cohort consists of 34 lung NETs. Transcriptomic data is available in the EGA under the code [EGAD00010001719](https://ega-archive.org/datasets/EGAD00010001719), and can also be downloaded along with clinical data from the Fernández-Cuesta lab GitHub repository [IARCbioinfo/DRMetrics](https://github.com/IARCbioinfo/DRMetrics). Methylation data is available in the EGA under the code [EGAD00010001720](https://ega-archive.org/datasets/EGAD00010001720). For this analysis, the folder `data/external_data/Alcala_LUNET/` should be present. The expression data file, `read_counts_all.txt`, must be moved to this folder, and the methylation data should be placed in a folder called `IDAT` inside the `data/external_data/Alcala_LUNET/` folder.
 
-First apply the preprocessing steps to expression and methylation data of each dataset separately using scripts in scripts/validation/preprocess folder:
-* Alcala folder:
-    * **Preprocess Transcriptomic data of Alcala**: scripts/validation/preprocess/Alcala.expression.R (geo enrironment)
-    * **Preprocess Methylomic data of Alcala**: scripts/validation/preprocess/Alcala.methylation.R (met.arrays enrironment)
-* Laddha folder:
-        * **Preprocess Transcriptomic data of Alcala**: scripts/validation/preprocess/Alcala.expression.R (geo enrironment)
+- **[Laddha et al.](https://pubmed.ncbi.nlm.nih.gov/31300474/)**: This cohort consists of 18 lung NETs. Transcriptomic data is available in GEO under the code [GSE118131](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE118131) and in the same matrix as Alcala et al. data in the Fernández-Cuesta lab GitHub repository [IARCbioinfo/DRMetrics](https://github.com/IARCbioinfo/DRMetrics). Methylation data is available under the code [GSE118132](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE118132). For this analysis, the folder `data/external_data/Laddha_LUNET/` should be present. The expression data file with genes as rows and samples as columns, `counts.tsv`, must be moved to this folder, and the methylation data should be placed in a folder called `IDAT` inside the `data/external_data/Laddha_LUNET/` folder.
+
+- **[Lakis et al.](https://pmc.ncbi.nlm.nih.gov/articles/PMC7859232/)**: This cohort consists of 11 pancreatic NETs. Transcriptomic, methylomic, and clinical data were available in the ICGC portal until June 2024. To obtain this data, please contact us at ccarretero.imas12@h12o.es. All files should be moved to the `data/external_data/Lakis_PANET/` folder.
+
+- **[Karpathakis et al.](https://pubmed.ncbi.nlm.nih.gov/26169971/)**: This cohort consists of 27 small intestine NETs. Methylation data is available under the code [GSE73832](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE73832). However, transcriptomic and clinical data are available only upon request from the authors. The methylation matrix, `matrix.txt`, and the requested expression data should be moved to the `data/external_data/Karpathakis_SINET/` folder.
+
+## Preprocess Public Data
+
+First, apply the preprocessing steps to the expression and methylation data of each dataset separately, using the scripts in the `scripts/validation/preprocess/` folder:
+
+* **Alcala Folder**:
+    * **Preprocess Transcriptomic Data of Alcala**: `scripts/validation/preprocess/Alcala/Alcala.expression.R` (geo environment)
+    * **Preprocess Methylation Data of Alcala**: `scripts/validation/preprocess/Alcala/Alcala.methylation.R` (met.arrays environment)
+
+* **Laddha Folder**:
+    * **Preprocess Transcriptomic Data of Laddha**: `scripts/validation/preprocess/Laddha/Laddha.expression.R` (geo environment)
+    * **Preprocess Methylation Data of Laddha**: `scripts/validation/preprocess/Laddha/Laddha.methylation.R` (met.arrays environment)
+
+* **Lakis Folder**: 
+    
+    * **Generation clinical data of Lakis**: `scripts/validation/preprocess/Lakis.base.generation.R` (any R installed)
+    * **Preprocess Transcriptomic Data of Lakis**: `scripts/validation/preprocess/Lakis/Lakis.expression.R` (geo environment)
+    * **Preprocess Methylation Data of Lakis**: `scripts/validation/preprocess/Lakis/Lakis.methylation.R` (geo environment)
+    * **Filtering clinical data of Lakis**: `scripts/validation/preprocess/Lakis.base.filter.R` (geo)
+
+* **Karpathakis Folder**: 
+    * **Preprocess Transcriptomic Data of Karpathakis**: `scripts/validation/preprocess/Karpathakis/Karpathakis.expression.R` (geo environment)
+    * **Preprocess Methylation Data of Lakis**: `scripts/validation/preprocess/Karpathakis/Karpathakis.methylation.R` (geo environment)
+
+Once each dataset was preprocessed we combine and filter all datasets runing:
+ 
+1. `scripts/validation/preprocess/combine.expression.R` (preprocess environment)
+2. `scripts/validation/preprocess/combine.expression.R` (preprocess environment)
+3. `scripts/validation/preprocess/Base.R` (geo environment)
+
+For finally preprocess steps we obtained:
+
+1. **CIMP calculation**: `scripts/validation/preprocess/calculate.CIMP.R` (preprocess environment)
+2. **Immune infiltration deconvolution**: `scripts/validation/preprocess/calculate.CIMP.R` (preprocess environment)
+
+## MOFA creation
+
+We develop two models. The model using the discovery samples and the validation samples called the combination model and the discovery model using only validation samples.
 
 
