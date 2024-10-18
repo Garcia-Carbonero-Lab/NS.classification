@@ -81,3 +81,17 @@ Once the molecular subtypes were identified, we analyzed the molecular and clini
 8. **Predictive evaluation of Cox models with and without neuroendocrine subtypes**: `scripts/classification/analysis/survival.eval.R` (surveval environment) (Note is surveval and not survival environment)
 9. **Prognostic impact of differentially expressed genes and methylation probes**: `scripts/classification/analysis/prognostic.features.R` (survival environment)
 10. **Correlation between gene expression and CpG methylation**: `scripts/classification/analysis/corr.met.exp.R` (correlation.exp.met environment)
+
+# Validation analysis
+To corroborate the robustenss of the results obtained. The same analysis aproach has been applied in external coohort of patienst with transcptomic and methylation data available.This external cohort consist in samples from 4 different studies and three different primary tumors:
+
+- [Alcala et al](https://pubmed.ncbi.nlm.nih.gov/31431620/) study: This cohort consist in 34 lung NETs. Transcriptomic data is avaiable in EGA under the code [EGAD00010001719](https://ega-archive.org/datasets/EGAD00010001719) and also can be download within clinical data from Fernandez-Cuesta lab github [IARCbioinfo/DRMetrics](https://github.com/IARCbioinfo/DRMetrics). Methylation data is also avaiavle in EGA under the code [EGAD00010001720](https://ega-archive.org/datasets/EGAD00010001720).
+- [Laddha et al](https://pubmed.ncbi.nlm.nih.gov/31300474/) study: This cohort consist in 18 lung NETs. Transcriptomic data is avaiable in GEO under the code [GSE118131](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE118131) and in the same matrix as Alcala et al data in Fernaned-Cuesta lab github [IARCbioinfo/DRMetrics](https://github.com/IARCbioinfo/DRMetrics). Methylation data is avaiable under the code [GSE118132](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE118132).
+- [Lakis et al](https://pmc.ncbi.nlm.nih.gov/articles/PMC7859232/) study: This cohort consist in 11 pancreatic NETs. Transcriptomic , metilomic and clinical data were avaiable in ICGC portal until June 2024. Please to obtain this data contact with us (ccarretero.imas12@h12o.es)
+- [Karpathakis et al](https://pubmed.ncbi.nlm.nih.gov/26169971/) study: This cohort consist in 27 small intestine NETs. Metthylomic data is avaiable under the code [GEO73832](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE73832). Transcriptomic and clinical data however are avaiable under authors request please contact them.
+
+## Preprocess public data
+
+First apply the preprocessing steps to expression and methylation data of each dataset separately:
+- Alcala
+ 
