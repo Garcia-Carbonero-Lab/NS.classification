@@ -92,6 +92,11 @@ To corroborate the robustenss of the results obtained. The same analysis aproach
 
 ## Preprocess public data
 
-First apply the preprocessing steps to expression and methylation data of each dataset separately:
-- Alcala
- 
+First apply the preprocessing steps to expression and methylation data of each dataset separately using scripts in scripts/validation/preprocess folder:
+* Alcala folder:
+        * **Preprocess Transcriptomic data of Alcala**: scripts/validation/preprocess/Alcala.expression.R (geo enrironment)
+        * **Preprocess Methylomic data of Alcala**: scripts/validation/preprocess/Alcala.methylation.R (met.arrays enrironment)
+* Laddha folder:
+        * **Preprocess Transcriptomic data of Alcala**: scripts/validation/preprocess/Alcala.expression.R (geo enrironment)
+
+
