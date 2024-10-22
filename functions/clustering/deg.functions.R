@@ -407,7 +407,8 @@ distinct()
 
 }
 
-# Add p-values from limma analysis to stat.test for use in plottingstat.test <- stat.test %>%
+# Add p-values from limma analysis to stat.test for use in plotting
+stat.test <- stat.test %>%
 mutate(
   p.adj.signif = stat.deg$p.adj.signif
 )
