@@ -36,7 +36,7 @@ Before running a script, activate the required environment using `conda activate
 Once the appropriate environment is activated, scripts can be run to reproduce the analysis using the R `-f` flag. For example:
 
 ```
-R -f scripts/preprocess/exprrssion.matrix.R
+R -f scripts/preprocess/expression.matrix.R
 
 ```
 
