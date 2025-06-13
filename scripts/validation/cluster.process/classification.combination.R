@@ -88,7 +88,7 @@ base.discovery <- base.discovery[,"Subtype",drop = FALSE]
 base.comparation <- merge(base.validation,base.discovery,all = T,by= "row.names")
 ############### Define Factors to Remove ###############
 # Specify factors to exclude from clustering
-factor.rm <- c("Factor2", "Factor4","Factor5","Factor6","Factor7","Factor8")
+factor.rm <- c("Factor3", "Factor4","Factor5","Factor6","Factor7","Factor8")
 
 
 ############### Define Clustering Algorithms ###############

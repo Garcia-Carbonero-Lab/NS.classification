@@ -3,7 +3,7 @@
 #
 # Description:
 #     This script prepares a combined clinical dataset from multiple studies
-#     (Lakis, Alcala, Laddha, Karpathakis) by loading, cleaning, and standardizing
+#     (Lakis, Alcala, Laddha, Patte) by loading, cleaning, and standardizing
 #     their clinical metadata. The output is a unified table of samples with
 #     associated attributes, ready for further validation analysis.
 #
@@ -288,60 +288,92 @@ base_Laddha <- base_Laddha[,colnames(base)]
 # Append Laddha study data to base
 base <- rbind(base,base_Laddha)
 
+rownames(base)[base$paper == "Laddha_LUNET"] <- rownames(base_Laddha)
 
 ######################################################################################
-# Karpathakis Study Data Processing
+# Patte Study Data Processing
 
-# Load Karpathakis clinical base file
-base_Karpathakis <- read.table(paste0(datadir,"/external_data/Karpathakis_SINET/Base_Karpathakis.tsv"),
-sep = "\t", row.names = 1, header = T)
-# Remove rows corresponding to cell lines or missing gender data
-base_Karpathakis <- base_Karpathakis[which(base_Karpathakis$Gender != "cell line" | is.na(base_Karpathakis$Gender)),]
+# Load Patte sample-level clinical data
+base_Patte <- read.table(paste0(datadir,"/external_data/SiNETs_Patte/METADATA_Samples_TNEi_for_paper_parcial.csv"),
+sep = "\t",
+row.names = 1,
+header = T,
+check.names = FALSE
+)
 
-# Convert relevant columns to factors and recode levels
-base_Karpathakis$Gender <- as.factor(base_Karpathakis$Gender)
-levels(base_Karpathakis$Gender) <- c("Female", "Male")
+# Filter and clean based on tissue and duplication
+base_Patte <- base_Patte[base_Patte$tissue %in% c("T","MN","Liver","LN"),]
+base_Patte$tissue <- factor(base_Patte$tissue, levels = c("T","MN","Liver","LN"))
+base_Patte <- base_Patte[order(base_Patte$tissue),]
 
-base_Karpathakis$Grade <- as.factor(base_Karpathakis$Grade)
-levels(base_Karpathakis$Grade) <- c("G1", "G2", "G3", NA, NA)
+base_Patte <- base_Patte[!duplicated(base_Patte$id.patient),]
 
-base_Karpathakis$primary.tumor <- as.factor(base_Karpathakis$primary.tumor)
-levels(base_Karpathakis$primary.tumor) <- c("appendix", "colorrectal","stomach","small.intestine")
+# Select and rename key variables
+base_Patte <- base_Patte[,c( "id.patient", "tissue", "grade","Ki67","pT", "chr18del", "chr4gain", "chr5gain", "chr7gain", "chr10gain", "chr14gain", "chr20gain")]
+colnames(base_Patte) <- c("id_patient", "tissue", "Grade", "Ki67", "Stage", "chr18del", "chr4gain", "chr5gain", "chr7gain", "chr10gain", "chr14gain", "chr20gain")
+base_Patte$Sample <- rownames(base_Patte)
 
-base_Karpathakis <- base_Karpathakis[which(base_Karpathakis$primary.tumor == "small.intestine"),]
+# Load and merge patient-level metadata
+base_patient <- read.csv(paste0(datadir, "/external_data/SiNETs_Patte/Metadata.csv"),
+sep = "\t",
+row.names = 1,
+header = T,
+check.names = FALSE,
+skip = 1
 
-base_Karpathakis$tissue[grep("_N",base_Karpathakis$Patient)] <- "Normal"
-base_Karpathakis$tissue <- as.factor(base_Karpathakis$tissue)
-levels(base_Karpathakis$tissue) <- c("Liver", "Mesenteric","Lymph.node", "Primary.tumor", "Mesenteric")
+)
 
-# Label study source
-base_Karpathakis$paper <- rep("Karpathakis_SINET", nrow(base_Karpathakis))
+colnames(base_patient)
+
+base_patient <- base_patient[,c("diagnostic.age", "primary.site", "OS_status", "time.surv")]
+
+colnames(base_patient) <- c("Age", "primary.tumor", "Status", "Overall.survival")
+
+# Merge sample- and patient-level metadata
+base_Patte <- merge(base_Patte, base_patient, by.x = "id_patient", by.y = "row.names", all = T)
+
+rownames(base_Patte) <- base_Patte$Sample
+
+# Format variables
+base_Patte$Overall.survival <- base_Patte$Overall.survival / 30.41
+base_Patte$primary.tumor <- "small.intestine"
+
+
+levels(base_Patte$tissue) <- c("Primary.tumor", "Liver", "Lymph.node", "Mesenteric")
+
+base_Patte$Stage <- as.factor(base_Patte$Stage)
+levels(base_Patte$Stage) <- c("I", "II", "III", "IV")
+
+base_Patte$Status <- as.factor(base_Patte$Status)
+base_Patte$paper <- rep("Patte_SINET", nrow(base_Patte))
+
 
 
 # Filter samples based on availability in expression and methylation data
-expression.Karpathakis <- read.table(paste0(wkdir, "/validation/Karpathakis/Karpathakis.expression.tsv"),
+expression.Patte <- read.table(paste0(wkdir, "/validation/Patte/Patte.expression.tsv"),
 sep = "\t",row.names = 1, header = T,nrows = 3)
 
-methylation.Karpathakis <- read.table(paste0(wkdir, "/validation/Karpathakis/Methylation_M_Karpathakis.tsv"),
+methylation.Patte <- read.table(paste0(wkdir, "/validation/Patte/Patte_M.tsv"),
 sep = "\t",row.names = 1, header = T,nrows = 3)
 
-patients <- intersect(colnames(expression.Karpathakis),colnames(methylation.Karpathakis))
+patients <- intersect(colnames(expression.Patte),colnames(methylation.Patte))
 
-patients <- patients[patients %in% rownames(base_Karpathakis)]
+patients <- patients[patients %in% rownames(base_Patte)]
 
-base_Karpathakis <- base_Karpathakis[patients,]
+base_Patte <- base_Patte[patients,]
 
 # Harmonize column structure with base dataset
-columns_prev <- colnames(base)[!colnames(base) %in% colnames(base_Karpathakis)]
+
+columns_prev <- colnames(base)[!colnames(base) %in% colnames(base_Gibert)]
 
 for (column in columns_prev){
 
-base_Karpathakis[,column] <- rep(NA, nrow(base_Karpathakis))
+base_Gibert[,column] <- rep(NA, nrow(base_Gibert))
 
 
 }
 
-columns_next <- colnames(base_Karpathakis)[!colnames(base_Karpathakis) %in% colnames(base)]
+columns_next <- colnames(base_Gibert)[!colnames(base_Gibert) %in% colnames(base)]
 
 for (column in columns_next){
 
@@ -350,12 +382,17 @@ base[,column] <- rep(NA, nrow(base))
 
 }
 
-base_Karpathakis <- base_Karpathakis[,colnames(base)]
 
-# Append Karpathakis study data to base
-base <- rbind(base,base_Karpathakis)
+base_Patte <- base_Patte[,colnames(base)]
 
-rownames(base)[base$paper == "Laddha_LUNET"] <- rownames(base_Laddha)
+# Append Patte study data to base
+base <- rbind(base,base_Patte)
+
+# Adjust CNV columns if applicable
+base$chr14gain[base$cnv == "gain14"] <- "YES"
+base$chr18del[base$cnv == "loss18"] <- "YES"
+
+
 
 ##############################################################################################
 # Output final combined dataset

@@ -78,7 +78,7 @@ row.names = 1
 
 ############### Define Factors to Exclude ###############
 # Only use relevant factors (Factor1 and Factor3) from the discovery dataset for clustering
-factor.rm <- c("Factor1", "Factor4","Factor5","Factor6","Factor7","Factor8")
+factor.rm <- c("Factor3", "Factor4","Factor5","Factor6","Factor7","Factor8")
 
 
 ############### Define Clustering Algorithms ###############

@@ -3,7 +3,7 @@
 #
 # Description:
 #     This script prepares a combined expression dataset from multiple studies
-#     (Alcala, Laddha, Lakis, Karpathakis) by loading, filtering, and merging
+#     (Alcala, Laddha, Lakis, Patte) by loading, filtering, and merging
 #     their expression matrices. The output is a unified expression matrix
 #     containing samples common across the studies, with genes filtered for use 
 #     in a MOFA (Multi-Omics Factor Analysis) model.
@@ -14,7 +14,7 @@
 #     - A list of genes to filter for MOFA model.
 #
 # Inputs:
-#     - Expression data from the studies (Alcala, Lakis, Karpathakis).
+#     - Expression data from the studies (Alcala, Lakis, Patte).
 #     - Base clinical data to filter samples.
 #     - Pre-processed list of selected genes for MOFA filtering.
 #
@@ -83,17 +83,15 @@ header = T)
 # Filter Lakis expression data to include only samples present in the base clinical metadata
 exp_Lakis <- exp_Lakis[,colnames(exp_Lakis) %in% rownames(base)]
 
-# Load Karpathakis expression data
-exp_Karpathakis<- read.table(paste0(wkdir,"/validation/Karpathakis/Karpathakis.expression.tsv"),
+# Load Patte expression data
+exp_Patte<- read.table(paste0(wkdir,"/validation/Patte/Patte.expression.tsv"),
 sep = "\t",
 row.names = 1,
 header = T,
 check.names = F)
-# Log-transform Karpathakis expression data to stabilize variance (log(x + 1))
-exp_Karpathakis <- log(exp_Karpathakis +1)
 
-# Filter Karpathakis expression data to include only samples present in the base clinical metadata
-exp_Karpathakis <- exp_Karpathakis[,colnames(exp_Karpathakis) %in% rownames(base)]
+# Filter Patte expression data to include only samples present in the base clinical metadata
+exp_Patte <- exp_Patte[,colnames(exp_Patte) %in% rownames(base)]
 
 
 
@@ -106,8 +104,8 @@ combination <- merge(exp_Lakis, exp_Alcala,by.x = "row.names",by.y = "row.names"
 rownames(combination) <- combination[,1]
 combination <- combination[,-1]
 
-# Merge the combined expression matrix (Lakis & Alcala) with Karpathakis data
-combination <- merge(combination, exp_Karpathakis,by.x = "row.names",by.y = "row.names")
+# Merge the combined expression matrix (Lakis & Alcala) with Patte data
+combination <- merge(combination, exp_Patte,by.x = "row.names",by.y = "row.names")
 
 # Set row names again and remove the redundant first column
 rownames(combination) <- combination[,1]

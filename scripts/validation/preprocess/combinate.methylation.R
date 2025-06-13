@@ -3,7 +3,7 @@
 #
 # Description:
 #     This script processes and combines methylation data from multiple studies
-#     (Alcala, Laddha, Lakis, Karpathakis) by loading, filtering, and merging
+#     (Alcala, Laddha, Lakis, Patte) by loading, filtering, and merging
 #     their methylation matrices. The output is a unified methylation matrix
 #     containing samples common across the studies, with probes filtered for use
 #     in a MOFA (Multi-Omics Factor Analysis) model.
@@ -14,7 +14,7 @@
 #     - A list of methylation probes to filter for the MOFA model.
 #
 # Inputs:
-#     - Methylation data from the studies (Alcala, Laddha, Lakis, Karpathakis).
+#     - Methylation data from the studies (Alcala, Laddha, Lakis, Patte).
 #     - Base clinical data to filter samples.
 #     - Pre-processed list of selected probes for MOFA filtering.
 #
@@ -103,14 +103,14 @@ base_Laddha <- base_Laddha[colnames(met_Laddha),]
 # Update column names of Laddha methylation data with sample names from the base data
 colnames(met_Laddha) <- base_Laddha$names
 
-# Load Karpathakis methylation data
-met_Karpathakis<- read.table(paste0(wkdir,"/validation/Karpathakis/Methylation_M_Karpathakis.tsv"),
+# Load Patte methylation data
+met_Patte<- read.table(paste0(wkdir,"/validation/Patte/Patte_M.tsv"),
 sep = "\t",
 row.names = 1,
 header = T)
 
-# Filter Karpathakis methylation data to include only samples present in the base clinical metadata
-met_Karpathakis <- met_Karpathakis[,colnames(met_Karpathakis) %in% rownames(base)]
+# Filter Patte methylation data to include only samples present in the base clinical metadata
+met_Patte <- met_Patte[,colnames(met_Patte) %in% rownames(base)]
 
 
 ############### Merge Methylation Data from Multiple Studies ###############
@@ -129,8 +129,8 @@ methylation <- merge(methylation, met_Lakis, by.x = "row.names",by.y = "row.name
 rownames(methylation) <- methylation[,1]
 methylation <- methylation[,-1]
 
-# Merge the combined matrix (Alcala, Laddha, Lakis) with Karpathakis data
-methylation <- merge(methylation, met_Karpathakis, by.x = "row.names",by.y = "row.names")
+# Merge the combined matrix (Alcala, Laddha, Lakis) with Patte data
+methylation <- merge(methylation, met_Patte, by.x = "row.names",by.y = "row.names")
 
 # Set row names again and remove the redundant first column
 rownames(methylation) <- methylation[,1]
