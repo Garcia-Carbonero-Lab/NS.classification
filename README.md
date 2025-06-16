@@ -111,11 +111,11 @@ First, apply the preprocessing steps to the expression and methylation data of e
     * **Generation clinical data of Lakis**: `scripts/validation/preprocess/Lakis.base.generation.R` (any R installed)
     * **Preprocess Transcriptomic Data of Lakis**: `scripts/validation/preprocess/Lakis/Lakis.expression.R` (geo environment)
     * **Preprocess Methylation Data of Lakis**: `scripts/validation/preprocess/Lakis/Lakis.methylation.R` (geo environment)
-    * **Filtering clinical data of Lakis**: `scripts/validation/preprocess/Lakis.base.filter.R` (geo)
+    * **Filtering clinical data of Lakis**: `scripts/validation/preprocess/Lakis.base.filter.R` (geo environmet)
 
 * **Patte Folder**: 
     * **Preprocess Transcriptomic Data of Patte**: `scripts/validation/preprocess/Patte/Patte.expression.R` (geo environment)
-    * **Preprocess Methylation Data of Patte**: `scripts/validation/preprocess/Patte/Patte.methylation.R` (geo environment)
+    * **Preprocess Methylation Data of Patte**: `scripts/validation/preprocess/Patte/Patte.methylation.R` (met.arrays environment)
 
 Once each dataset was preprocessed we combine and filter all datasets runing:
  
