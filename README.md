@@ -71,16 +71,16 @@ We applied an ensemble classification strategy using the MOFA model, excluding f
 
 Once the molecular subtypes were identified, we analyzed the molecular and clinical characteristics of each subtype.
 
-1. **Clinical differences**: `scripts/classification/analysis/clinical.R` (any environment with R)
-2. **Immune score differences**: `scripts/classification/analysis/immune.R` (deg environment)
-3. **Differentially expressed genes**: `scripts/classification/analysis/deg.R` (deg environment)
-4. **Differentially methylated probes**: `scripts/classification/analysis/dep.R` (deg environment)
-5. **Differentially inferred activated master regulators**: `scripts/classification/analysis/master.regulators.R` (deg environment)
-6. **Gene set enrichment analysis**: `scripts/classification/analysis/gsea.R` (gsea environment)
-7. **Survival analysis**: `scripts/classification/analysis/survival.NS.R` (survival environment)
-8. **Predictive evaluation of Cox models with and without neuroendocrine subtypes**: `scripts/classification/analysis/survival.eval.R` (surveval environment) (Note is surveval and not survival environment)
-9. **Prognostic impact of differentially expressed genes and methylation probes**: `scripts/classification/analysis/prognostic.features.R` (survival environment)
-10. **Correlation between gene expression and CpG methylation**: `scripts/classification/analysis/corr.met.exp.R` (correlation.exp.met environment)
+1. **Clinical differences**: `scripts/classification.analysis/clinical.R` (any environment with R)
+2. **Immune score differences**: `scripts/classification.analysis/immune.R` (deg environment)
+3. **Differentially expressed genes**: `scripts/classification.analysis/deg.R` (deg environment)
+4. **Differentially methylated probes**: `scripts/classification.analysis/dep.R` (deg environment)
+5. **Differentially inferred activated master regulators**: `scripts/classification.analysis/master.regulators.R` (deg environment)
+6. **Gene set enrichment analysis**: `scripts/classification.analysis/gsea.R` (gsea environment)
+7. **Survival analysis**: `scripts/classification.analysis/survival.NS.R` (survival environment)
+8. **Predictive evaluation of Cox models with and without neuroendocrine subtypes**: `scripts/classification.analysis/survival.eval.R` (surveval environment) (Note is surveval and not survival environment)
+9. **Prognostic impact of differentially expressed genes and methylation probes**: `scripts/classification.analysis/prognostic.features.R` (survival environment)
+10. **Correlation between gene expression and CpG methylation**: `scripts/classification.analysis/corr.met.exp.R` (correlation.exp.met environment)
 
 # Validation Analysis
 
