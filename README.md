@@ -92,7 +92,7 @@ To corroborate the robustness of the results obtained, the same analysis approac
 
 - **[Lakis et al.](https://pmc.ncbi.nlm.nih.gov/articles/PMC7859232/)**: This cohort consists of 11 pancreatic NETs. Transcriptomic, methylomic, and clinical data were available in the ICGC portal until June 2024. To obtain this data, please contact us at ccarretero.imas12@h12o.es. All files should be moved to the `data/external_data/Lakis_PANET/` folder.
 
-- **[Karpathakis et al.](https://pubmed.ncbi.nlm.nih.gov/26169971/)**: This cohort consists of 27 small intestine NETs. Methylation data is available under the code [GSE73832](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE73832). However, transcriptomic and clinical data are available only upon request from the authors. The methylation matrix, `matrix.txt`, and the requested expression data should be moved to the `data/external_data/Karpathakis_SINET/` folder.
+- **[Patte et al.](https://pubmed.ncbi.nlm.nih.gov/40038310/)**: This cohort consists of 117 small intestine NETs. Methylation data is available under the code [GSE229203](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE229203), while transcriptomic and clinical data can be accessed through EGA under dataset [EGAD50000000906] (https://ega-archive.org/datasets/EGAD50000000906), In this analysis, we use the gene expression matrix as provided by the authors. To proceed, ensure the folder `data/external_data/SiNETs_Patte/` exists. The expression matrix  `expression_data_genesymbol.rds`, containing genes as rows and samples as columns, should be placed directly in this folder. The raw methylation data should be placed in a subfolder named `IDAT` within the same directory.
 
 ## Preprocess Public Data
 
@@ -113,9 +113,9 @@ First, apply the preprocessing steps to the expression and methylation data of e
     * **Preprocess Methylation Data of Lakis**: `scripts/validation/preprocess/Lakis/Lakis.methylation.R` (geo environment)
     * **Filtering clinical data of Lakis**: `scripts/validation/preprocess/Lakis.base.filter.R` (geo)
 
-* **Karpathakis Folder**: 
-    * **Preprocess Transcriptomic Data of Karpathakis**: `scripts/validation/preprocess/Karpathakis/Karpathakis.expression.R` (geo environment)
-    * **Preprocess Methylation Data of Lakis**: `scripts/validation/preprocess/Karpathakis/Karpathakis.methylation.R` (geo environment)
+* **Patte Folder**: 
+    * **Preprocess Transcriptomic Data of Patte**: `scripts/validation/preprocess/Patte/Patte.expression.R` (geo environment)
+    * **Preprocess Methylation Data of Patte**: `scripts/validation/preprocess/Patte/Patte.methylation.R` (geo environment)
 
 Once each dataset was preprocessed we combine and filter all datasets runing:
  
@@ -130,6 +130,52 @@ For finally preprocess steps we obtained:
 
 ## MOFA creation
 
-We develop two models. The model using the discovery samples and the validation samples called the combination model and the discovery model using only validation samples.
 
+We developed two MOFA models:
 
+1. **Discovery Model** – Trained exclusively on discovery samples.  
+2. **Combination Model** – Trained on both discovery and validation samples.
+
+The relevant analysis script is located at:  
+`scripts/validation/MOFA/MOFA.comparations.R`  
+(MOFA environment)
+
+### Step 1: Factor Comparison
+
+We begin by comparing the **Discovery MOFA model** with the **Combination MOFA model** to identify which latent factors from the discovery dataset correspond to those in the combination model.  
+Script:  
+`scripts/validation/MOFA/MOFA.comparations.R`
+(MOFA environment)
+
+### Step 2: Sample Classification into Clusters
+
+Next, we classify samples from both the **Combination** and **Validation** MOFA models into three clusters.  
+This classification is based on the latent factors corresponding to original **Factor 1** and **Factor 2**.
+
+Scripts:
+- `scripts/validation/cluster.process/classification.combination.R` (clustering.ensemble environment)
+- `scripts/validation/cluster.process/classification.validation.R`
+(clustering.ensemble environment)
+
+### Step 3: Subtype Assignment (NSs)
+
+Finally, we assign samples to **NSs (novel subtypes)** based on the following process:
+
+1. Each validation sample is assigned to a subtype based on the majority subtype of the discovery samples that cluster with it in the **Combination MOFA model**.
+
+2. The **NSs in the Validation MOFA model** are then annotated based on the majority subtype labels transferred from the Combination model.
+
+Script:  
+`scripts/validation/cluster.process/clustering.comparation.R` (any with R installed environment)
+
+## SNs molecular and clinical associations validation ##
+
+We analyze the associations between NSs and clinical and molecular data using the following scripts:
+
+1. **Clinical differences**: `scripts/validation/cluster.analysis/clinical.R` (any environment with R)
+2. **Immune score differences**: `scripts/validation/cluster.analysis/immune.R` (deg environment)
+3. **Differentially expressed genes**: `scripts/validation/cluster.analysis/deg.R` (deg environment)
+4. **Differentially methylated probes**: `sscripts/validation/cluster.analysis/dmp.R` (deg environment)
+5. **Gene set enrichment analysis**: `scripts/validation/cluster.analysis/gsea.R` (gsea environment)
+6. **Survival analysis**: `scripts/validation/cluster.analysis/survival.NS.R` (survival environment)
+7. **CNVs enrichtment**: `scripts/validation/cnv.R` (clinical environment)
