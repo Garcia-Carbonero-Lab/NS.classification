@@ -160,7 +160,7 @@ multiple_cov <- cox.multiple(base = base,
                              covariates = c("STAGE_IV", "PRIMARY_TUMOR", "GENDER", "AGE"),  # Covariates
                              outdir = outdir,         # Output directory for results
                              flag = "Cox_Multiple_covariates_methylation",  # Flag for methylation results
-                             th = 0.05)                 # Threshold for variable selection
+                             th = 1)                 # Threshold for variable selection
 
 
 ############### Prognostic Feature Extraction ###############

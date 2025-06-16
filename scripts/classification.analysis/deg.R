@@ -263,3 +263,47 @@ paste0(wkdir,
 sep = "\t",
 row.names= T,
 col.names= NA)
+
+
+
+
+# write DEGS
+NS1 <- read.table(paste0(wkdir,
+"/clustering/deg/Table_NS1_filter.txt"),
+sep = "\t",
+row.names = 1,
+header = T
+)
+
+NS2 <- read.table(paste0(wkdir,
+"/clustering/deg/Table_NS2_filter.txt"),
+sep = "\t",
+row.names = 1,
+header = T
+)
+
+NS3 <- read.table(paste0(wkdir,
+"/clustering/deg/Table_NS3_filter.txt"),
+sep = "\t",
+row.names = 1,
+header = T
+)
+
+
+NSs <- merge(NS1,NS2,by = "row.names", all = T)
+NSs <- merge(NSs,NS3,by.x = "Row.names", by.y = "row.names", all = T)
+
+
+
+colnames(NSs) <- c("Gene.Symbol","NS1.logFC","NS1.AveExpr", "NS1.t.statistic", "NS1.P.Value",
+"NS1.adj.P.Val","NS1.B.statistics", "NS2.logFC","NS1.AveExpr", "NS2.t.statistic", "NS2.P.Value",
+"NS2.adj.P.Val","NS2.B.statistics", "NS3.logFC","NS3.AveExpr", "NS3.t.statistic", "NS3.P.Value",
+"NS3.adj.P.Val","NS3.B.statistics") 
+
+write.table(NSs,
+paste0(wkdir,
+"/clustering/deg/All.DEGs.txt"),
+sep = "\t",
+row.names= F,
+col.names= T,
+na = "NS")

@@ -1,0 +1,66 @@
+RNA DASL array				450K Batch	DASL batch	Phenotype								
+Sample_Name	Sample_Well	Sentrix_ID	Sentrix_Position			Lesion	Sample site	Primary site	Peritumoral	Grade	Ki67	FF_FFPE	gender	age
+0165092_T	C06	9344744009	B	May-13	Aug-13	primary	small intestine	small intestine		1	1%	FFPE	M	62
+01896II_T	B04	9444360061	B		Dec-13	metastasis	liver	small intestine		2	2-3%	FFPE	F	59
+027817A7_T	F07	9444372021	I		Dec-13	primary	small intestine	small intestine		2		FFPE	F	43
+033349CT1_T	F03	9344732093	H	May-13	Aug-13	primary	small intestine	small intestine		2	2%	FFPE	F	54
+033349CT2	G03	9344732093	J		Aug-13	primary	small intestine	small intestine		2	2%	FFPE	F	54
+0414821A4_N	D07	9444372021	E		Dec-13	normal	small intestine	small intestine		normal	normal	FFPE	F	45
+0414821A4_T	C07	9444372021	C	Nov-13	Dec-13	primary	small intestine	small intestine		unk	unk	FFPE	F	45
+0519934A2_T	G04	9344744004	B	May-13	Aug-13	primary	appendix	appendix		1	<2%	FFPE	F	50
+0612608A4_T	D04	9344744004	G	May-13	Aug-13	metastasis	mes_omentum	small intestine		2	5%	FFPE	M	39
+0612608A8_N	C04	9344744004	E	May-13	Aug-13	normal	small intestine	small intestine		normal	normal	FFPE	M	39
+066042A1_T	B03	9344732093	K	May-13	Aug-13	metastasis	liver	small intestine		1	<2%	FFPE	M	49
+066042A2_T	E02	9344732093	A	May-13	Aug-13	metastasis	liver	small intestine		1	<2%	FFPE	M	49
+066042A2_T2	F02	9344732093	C		Aug-13	metastasis	liver	small intestine		1	<2%	FFPE	M	49
+066042A5_T1	G02	9344732093	E		Aug-13	metastasis	liver	small intestine		1	<2%	FFPE	M	49
+066042A5_T2	H02	9344732093	G		Aug-13	metastasis	liver	small intestine		1	<2%	FFPE	M	49
+066042A6_T	A03	9344732093	I	May-13	Aug-13	metastasis	liver	small intestine		1	<2%	FFPE	M	49
+68279A3_T	G07	9444372021	K	Nov-13	Dec-13	primary	small intestine	small intestine		1	<1/10hpf	FFPE	M	71
+073098E2_T	G03	9444360061	K	Nov-13	Dec-13	metastasis	primary	small intestine		1	2%	FFPE	F	52
+07H4404A2_T	B03	9444360061	A		Dec-13	metastasis	mes_omentum	small intestine		2	3/10hpfs	FFPE	M	56
+08C10646269_T	D06	9344744009	D	Jan-13	Aug-13	primary	small intestine	small intestine		1	<1%	FFPE	M	64
+09A44A6_T	H03	9344732093	L	May-13	Aug-13	primary	small intestine	small intestine		2	3/10hpfs	FFPE	M	40
+1015089A3_N	B02	9344732085	H	Jan-13	Aug-13	normal	small intestine	small intestine		normal	normal	FFPE	F	69
+1015089A3_T	A02	9344732085	F	Jan-13	Aug-13	primary	small intestine	small intestine		1	<2%	FFPE	F	69
+1081741A308_T	H05	9344744009	G	Jan-13	Aug-13	primary	appendix	appendix		1	2%	FFPE	M	17
+10D22894A169_T	F05	9344744009	C	Jan-13	Aug-13	metastasis	liver	small intestine		1	<2%	FFPE	M	49
+1111775A5_N	G04	9444360061	L		Dec-13	normal		small intestine		normal	normal	FFPE	M	58
+1111775A5_T	F04	9444360061	J		Dec-13	primary	small intestine	small intestine		1	<1%	FFPE	M	58
+1111775D1_T	B07	9444372021	A		Dec-13	metastasis	mes_omentum	small intestine		2	15%	FFPE	M	58
+111197A3_T	D04	9444360061	F		Dec-13	metastasis	liver	small intestine		2	15%	FFPE	F	40
+1166106G69_T	G05	9344744009	E	Jan-13	Aug-13	primary	small intestine	small intestine		1	<2%	FFPE	F	59
+1186316308A_T	H06	9344744009	L	Jan-13	Aug-13	primary	small intestine	small intestine		2	3%	FFPE	F	68
+119541B7_T	E04	9444360061	H		Dec-13	metastasis	ovary	small intestine		1	<1%	FFPE	F	42
+11C11786B13_T	E04	9344744004	I	May-13	Aug-13	primary	small intestine	small intestine		2	5%	FFPE	F	75
+12A5867A1_N	A04	9344744004	A	May-13	Aug-13	normal	small intestine	small intestine		normal	normal	FFPE	M	68
+12A5867A6_T	B04	9344744004	C	May-13	Aug-13	primary	small intestine	small intestine		1	<2%	FFPE	M	68
+172902C_T	F03	9444360061	I		Dec-13	primary	small intestine	small intestine		1	2%	FFPE	F	59
+2329981A_T	E03	9444360061	G		Dec-13	primary	colon	colon		1	1%	FFPE	F	68
+53254_T	F08	9444372021	J		Dec-13	metastasis	small intestine	small intestine		1	<2%	FF	F	71
+5623834_T	G06	9344744009	J	Jan-13	Aug-13	primary	small intestine	small intestine		3	60-80%	FFPE	F	45
+71855_T	C08	9444372021	D		Dec-13	primary	small intestine	small intestine		1	<2%	FF	F	48
+72652_T	G08	9444372021	L	Nov-13	Dec-13	metastasis	small intestine	small intestine		1	<2%	FF	F	71
+80852_T	D08	9444372021	F	Nov-13	Dec-13	metastasis	liver	small intestine		1	<2%	FF	F	60
+811068A5_T	B08	9444372021	B	Nov-13	Dec-13	primary	small intestine	small intestine		1	1%	FFPE	M	62
+816176A7_T	E07	9444372021	G		Dec-13	primary	small intestine	small intestine		1	<1%	FFPE	F	64
+8175834_T	F06	9344744009	H	Jan-13	Aug-13	primary	small intestine	small intestine		1	<2%	FFPE	F	46
+929097H_T	H04	9344744004	D	Jan-13	Aug-13	primary	small intestine	small intestine		3	>20%	FFPE	M	
+952583B_T	C04	9444360061	D		Dec-13	primary	small intestine	small intestine				FFPE	M	
+9572A6_N	E05	9344744009	A		Aug-13	normal	small intestine	small intestine		normal	normal	FFPE	M	78
+9572A6308_T	D05	9344744004	L	Jan-13	Aug-13	primary	small intestine	small intestine		1	<1%	FFPE	M	78
+972181IIA_N	D02	9344732085	L		Aug-13	normal	liver	small intestine		normal	normal	FFPE	F	30
+972181IIA_T	C02	9344732085	J	May-13	Aug-13	metastasis	liver	small intestine				FFPE	F	30
+9913069VIC_N	B06	9344744009	K	May-13	Aug-13	normal	liver	small intestine		normal	normal	FFPE	F	30
+9913069VIC_T	A06	9344744009	I	May-13	Aug-13	metastasis	liver	small intestine				FFPE	F	30
+B052175A23081_T	A05	9344744004	F	Jan-13	Aug-13	metastasis	small intestine	small intestine		1	1%	FFPE	M	63
+CDNT2.5_T	E08	9444372021	H	Nov-13	Dec-13	cell line	cell line	cell line		cell line	cell line	cell line	cell line	cell line
+H06195487_T	C03	9344732093	B	May-13	Aug-13	primary	colon	colon		1	<1%	FFPE	F	62
+H0792369_T	E06	9344744009	F		Aug-13	primary	small intestine	small intestine				FFPE	F	70
+H112177A2_N	E03	9344732093	F	May-13	Aug-13	normal	appendix	appendix		normal	normal	FFPE	M	27
+H112177A2_T	D03	9344732093	D	May-13	Aug-13	primary	appendix	appendix		2	4%	FFPE	M	27
+M00814993_T	C03	9444360061	C	Nov-13	Dec-13	primary	small intestine	small intestine		2	2-3%	FFPE	F	50
+M02316052_T	D03	9444360061	E	Nov-13	Dec-13	primary	small intestine	small intestine				FFPE	M	
+PH1015539A03691_T	B05	9344744004	H	Jan-13	Aug-13	primary	small intestine	small intestine		1	<2%	FFPE	M	68
+PH1015539A03692_N	C05	9344744004	J	Jan-13	Aug-13	normal	small intestine	small intestine		normal	normal	FFPE	M	68
+S088069A10_T	F04	9344744004	K	May-13	Aug-13	primary	small intestine	small intestine		1	<2%	FFPE	F	64
