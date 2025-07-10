@@ -175,7 +175,7 @@ We analyze the associations between NSs and clinical and molecular data using th
 1. **Clinical differences**: `scripts/validation/cluster.analysis/clinical.R` (any environment with R)
 2. **Immune score differences**: `scripts/validation/cluster.analysis/immune.R` (deg environment)
 3. **Differentially expressed genes**: `scripts/validation/cluster.analysis/deg.R` (deg environment)
-4. **Differentially methylated probes**: `sscripts/validation/cluster.analysis/dmp.R` (deg environment)
+4. **Differentially methylated probes**: `scripts/validation/cluster.analysis/dmp.R` (deg environment)
 5. **Gene set enrichment analysis**: `scripts/validation/cluster.analysis/gsea.R` (gsea environment)
 6. **Survival analysis**: `scripts/validation/cluster.analysis/survival.NS.R` (survival environment)
 7. **CNVs enrichtment**: `scripts/validation/cnv.R` (clinical environment)
