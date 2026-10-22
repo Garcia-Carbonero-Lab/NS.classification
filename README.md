@@ -6,8 +6,8 @@ This repository contains the code and some of the data used to generate and anal
 The first step is to download data that is not included in the repository and move it to the corresponding folders.  
 To develop the molecular classification, including custom data and downstream analysis, you need to download the following files:
 
-1. **Transcriptomic data**: Download raw transcriptomic data (.CEL files) from GEO using the [GeoXXX](URL) accession. Once downloaded, create the folder `data/transcriptome/raw/files/` and move all files there.
-2. **Methylomic data**: Download raw methylomic data (.IDAT files) from GEO using the [GeoXXX](URL) accession. After downloading, create the folder `data/methylome/raw/IDAT/` and move the files into it.
+1. **Transcriptomic data**: Download raw transcriptomic data (.CEL files) from GEO using the [GSE305904] accession. Once downloaded, create the folder `data/transcriptome/raw/files/` and move all files there.
+2. **Methylomic data**: Download raw methylomic data (.IDAT files) from GEO using the [GSE305905] accession. After downloading, create the folder `data/methylome/raw/IDAT/` and move the files into it.
 3. **Infinium Methylation Annotation File**: Download the methylation annotation file from the Illumina website [here](https://webdata.illumina.com/downloads/productfiles/methylationEPIC/infinium-methylationepic-v-1-0-b5-manifest-file-csv.zip) and place it in the `data/methylome/annotation/` folder.
 
 ## Config Preparation
